@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+// import { useState } from "react";
+import Home from "./pages/home/Home";
+import Profile from "./pages/profile/Profile";
+import { Switch, Route } from "react-router-dom";
 
 function App() {
+  // const [user, setUser] = useState("");
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/profile">{!user ? <Home /> : <Profile />}</Route>
+      </Switch>
+    </>
   );
 }
 
 export default App;
+
+// setName={setUser}
